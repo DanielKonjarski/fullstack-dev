@@ -1,0 +1,24 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Environment Variables
+.env
+
+# Database
+comp3133__StudentID_assigment1/
+
+# Logs
+logs/
+
+# MacOS system files
+.DS_Store
+
+# VS Code settings
+.vscode/
+
+# Build
+dist/
+build/
