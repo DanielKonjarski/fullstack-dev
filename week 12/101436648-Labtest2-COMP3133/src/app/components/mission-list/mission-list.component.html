@@ -1,0 +1,33 @@
+<div class="mission-container">
+  <h1>SpaceX Missions</h1>
+  
+  <app-mission-filter (yearSelected)="onYearFilter($event)"></app-mission-filter>
+  
+  <div class="mission-list">
+    <mat-card *ngFor="let launch of filteredLaunches" class="mission-card">
+      <mat-card-header>
+        <div mat-card-avatar *ngIf="launch.links.mission_patch_small" class="mission-header-image">
+          <img [src]="launch.links.mission_patch_small" alt="Mission Patch">
+        </div>
+        <mat-card-title>{{ launch.mission_name }}</mat-card-title>
+        <mat-card-subtitle>Flight #{{ launch.flight_number }} ({{ launch.launch_year }})</mat-card-subtitle>
+      </mat-card-header>
+      
+      <mat-card-content>
+        <p *ngIf="launch.details">{{ launch.details | slice:0:150 }}{{ launch.details.length > 150 ? '...' : '' }}</p>
+        <p *ngIf="!launch.details">No details available</p>
+        
+        <div class="rocket-info">
+          <p><strong>Rocket:</strong> {{ launch.rocket.rocket_name }} ({{ launch.rocket.rocket_type }})</p>
+        </div>
+      </mat-card-content>
+      
+      <mat-card-actions>
+        <a mat-button *ngIf="launch.links.article_link" [href]="launch.links.article_link" target="_blank">ARTICLE</a>
+        <a mat-button *ngIf="launch.links.wikipedia" [href]="launch.links.wikipedia" target="_blank">WIKIPEDIA</a>
+        <a mat-button *ngIf="launch.links.video_link" [href]="launch.links.video_link" target="_blank">VIDEO</a>
+        <button mat-raised-button color="primary" (click)="navigateToDetails(launch.flight_number)">DETAILS</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
